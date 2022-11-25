@@ -12,17 +12,28 @@ describe('Github Test Cases for Desktop', () => {
         cy.get('.btn').click()
     })
 
-    it('T Best Case : Click on Search and Perform Search Based on Keyword ("Cypress")', () => {
-        cy.get('.header-search-wrapper > .form-control').type('Cypress{enter}')
-        cy.get(':nth-child(1) > .mt-n1 > :nth-child(1) > .f4').click()
-        cy.get('#issues-tab').click()
-        cy.get('[aria-label="Page 110"]').click()
-    })
-
     it('T2 : Click on Sign Up', () => {
         cy.get('.HeaderMenu-link--sign-up').click()
-        cy.get('#email-container > .flex-column').type("dummy@gmail.com{enter}")
-        cy.wait(1000)
+        cy.wait(7000)
+        cy.get('#email', { timeout: 10000 }).should('be.visible').focus().type("dummy@gmail.com")//Enter Wrong Email
+        if(cy.get('.mb-0').contains('Email is invalid or already taken')){
+          cy.log("Validation of Email")
+        }
+        cy.get('#email', { timeout: 10000 }).should('be.visible').focus().clear().type("muhammadawab7862@gmail.com")//Enter New Email
+        cy.get("#email-container > div.d-flex.flex-items-center.flex-column.flex-sm-row > button", { timeout: 10000 }).should('be.visible').click({force:true})
+        
+        cy.get('#password', { timeout: 10000 }).should('be.visible').focus().type("Qwerty@7862") //Password
+        cy.get("#password-container > div.d-flex.flex-items-center.flex-column.flex-sm-row > button", { timeout: 10000 }).should('be.visible').click({force:true})
+        
+        cy.get('#login', { timeout: 10000 }).should('be.visible').focus().type("CypressTest7862");
+        cy.get("#username-container > div.d-flex.flex-items-center.flex-column.flex-sm-row > button", { timeout: 10000 }).should('be.visible').click({force:true})
+
+        cy.get('#opt_in', { timeout: 10000 }).should('be.visible').focus().type("y");
+        cy.get("#opt-in-container > div.d-flex.flex-items-center.flex-column.flex-sm-row > button", { timeout: 10000 }).should('be.visible').click({force:true})
+    
+        cy.get('.js-octocaptcha-frame').click()
+        //There is a tricky captcha enabled for this Sign Up form so automating it will be very tricky
+        //Still do able but requires alot of time
     })
     it('T3 : Click on Header Button (Products)', () => {
         cy.get(':nth-child(1) > .HeaderMenu-link').click()
@@ -43,6 +54,12 @@ describe('Github Test Cases for Desktop', () => {
     it('T7 : Click on Github Icon', () => {
         cy.get('.mr-lg-3 > .octicon').click()
         cy.wait(1000)
+    })
+    it('T8 : Click on Search and Perform Search Based on Keyword ("Cypress")', () => {
+        cy.get('.header-search-wrapper > .form-control').type('Cypress{enter}')
+        cy.get(':nth-child(1) > .mt-n1 > :nth-child(1) > .f4').click()
+        cy.get('#issues-tab').click()
+        cy.get('[aria-label="Page 110"]').click()
     })
 })
 
