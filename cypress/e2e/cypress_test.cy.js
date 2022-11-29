@@ -4,7 +4,7 @@ describe('Github Test Cases for Desktop', () => {
         cy.viewport(1920, 1080)
         cy.visit("www.github.com")
     })
-
+    
     it('T1 : Click on Sign In and Perform Sign In', () => {
         cy.get('.mr-lg-3 > .HeaderMenu-link').click()
         cy.get('#login_field').type('muhammadawab1996@gmail.com') //replace with your email
