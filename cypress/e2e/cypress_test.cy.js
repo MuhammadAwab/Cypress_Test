@@ -5,10 +5,14 @@ describe('Github Test Cases for Desktop', () => {
         cy.visit("www.github.com")
     })
     
+    it('T load testing : Testing the Page Loading',()=>{
+        cy.get('.header-search-wrapper > .form-control').type('Cypress{enter}')
+    })
+
     it('T1 : Click on Sign In and Perform Sign In', () => {
         cy.get('.mr-lg-3 > .HeaderMenu-link').click()
         cy.get('#login_field').type('muhammadawab1996@gmail.com') //replace with your email
-        cy.get('#password').type('password') //hidding password for privacy (replace with your password)
+        cy.get('#password').type('**********') //hidding password for privacy (replace with your password)
         cy.get('.btn').click()
     })
 
@@ -31,28 +35,28 @@ describe('Github Test Cases for Desktop', () => {
         cy.get('#opt_in', { timeout: 10000 }).should('be.visible').focus().type("y");
         cy.get("#opt-in-container > div.d-flex.flex-items-center.flex-column.flex-sm-row > button", { timeout: 10000 }).should('be.visible').click({force:true})
     
-        cy.get('.js-octocaptcha-frame').click()
+        //cy.get('.js-octocaptcha-frame').click()
         //There is a tricky captcha enabled for this Sign Up form so automating it will be very tricky
         //Still do able but requires alot of time
     })
     it('T3 : Click on Header Button (Products)', () => {
-        cy.get(':nth-child(1) > .HeaderMenu-link').click()
+        cy.get(':nth-child(1) > .HeaderMenu-link',{timeout:10000}).click()
         cy.wait(1000)
     })
     it('T4 : Click on Header Button (Solutions)', () => {
-        cy.get('.d-lg-flex.list-style-none > :nth-child(2) > .HeaderMenu-link').click()
+        cy.get('.d-lg-flex.list-style-none > :nth-child(2) > .HeaderMenu-link',{timeout:10000}).click()
         cy.wait(1000)
     })
     it('T5 : Click on Header Button (Open Source)', () => {
-        cy.get(':nth-child(3) > .HeaderMenu-link').click()
+        cy.get(':nth-child(3) > .HeaderMenu-link',{timeout:10000}).click()
         cy.wait(1000)
     })
     it('T6 : Click on Header Button (Pricing)', () => {
-        cy.get(':nth-child(4) > .HeaderMenu-link').click()
+        cy.get(':nth-child(4) > .HeaderMenu-link',{timeout:10000}).click()
         cy.wait(1000)
     })
     it('T7 : Click on Github Icon', () => {
-        cy.get('.mr-lg-3 > .octicon').click()
+        cy.get('.mr-lg-3 > .octicon',{timeout:10000}).click()
         cy.wait(1000)
     })
     it('T8 : Click on Search and Perform Search Based on Keyword ("Cypress")', () => {
@@ -84,18 +88,21 @@ describe('Github Test Cases for Mobile', () => {
         cy.wait(1000)
     })
     it('T4 : Click on Header Button (Solutions)', () => {
-        cy.get('.js-details-target > .Button-content > .Button-label').click()
-        cy.get('.d-lg-flex.list-style-none > :nth-child(2) > .HeaderMenu-link').click()
+        cy.get('.js-details-target > .Button-content > .Button-label',{timeout:10000}).click()
+        cy.get('.d-lg-flex.list-style-none > :nth-child(2) > .HeaderMenu-link',{timeout:10000})
+          .should('be.visible').click()
         cy.wait(1000)
     })
     it('T5 : Click on Header Button (Open Source)', () => {
-        cy.get('.js-details-target > .Button-content > .Button-label').click()
-        cy.get(':nth-child(3) > .HeaderMenu-link').click()
+        cy.get('.js-details-target > .Button-content > .Button-label',{timeout:10000}).click()
+        cy.get(':nth-child(3) > .HeaderMenu-link',{timeout:10000})
+        .should('be.visible').click()
         cy.wait(1000)
     })
     it('T6 : Click on Header Button (Pricing)', () => {
-        cy.get('.js-details-target > .Button-content > .Button-label').click()
-        cy.get(':nth-child(4) > .HeaderMenu-link').click()
+        cy.get('.js-details-target > .Button-content > .Button-label',{timeout:10000}).click()
+        cy.get(':nth-child(4) > .HeaderMenu-link',{timeout:10000})
+        .should('be.visible').click()
         cy.wait(1000)
     })
     it('T7 : Click on Github Icon', () => {
